@@ -75,6 +75,50 @@ Performance : Le vote majoritaire est une méthode simple et efficace pour agré
 ### Limites :
 Le dataset Iris est relativement simple, ce qui explique les performances parfaites. Sur des datasets plus complexes, cette méthode devra être testée pour vérifier sa robustesse.
 
+# Question 3 
+
+#### **Objectif :**
+Introduire un système de **pondération dynamique** pour améliorer la précision et la robustesse d'un modèle agrégé, basé sur le consensus des prédictions de plusieurs modèles.
+
+---
+
+#### **Description du Code :**
+Ce code interroge quatre modèles distincts (Régression Logistique, Random Forest, SVM, KNN), regroupe leurs prédictions, et ajuste dynamiquement leurs poids en fonction de leur précision relative au consensus.
+
+---
+
+#### **Fonctionnement :**
+1. **Prédictions et Agrégation :**
+   - Chaque modèle renvoie une prédiction et des probabilités associées à chaque classe.
+   - Les probabilités des modèles sont multipliées par leurs poids respectifs avant d'être agrégées pour déterminer une **prédiction consensuelle**.
+
+2. **Mise à jour des Poids :**
+   - Les poids des modèles sont initialisés à `1.0`.
+   - Après chaque prédiction, les poids sont ajustés :
+     - **Bonus** (`+0.1`) : Si un modèle est d'accord avec le consensus.
+     - **Malus** (`-0.1`) : Si un modèle est en désaccord avec le consensus.
+   - Les poids sont contraints dans l'intervalle `[0.0, 1.0]`.
+
+3. **Évaluation Globale :**
+   - Le modèle agrégé est évalué sur un ensemble de test en calculant sa **précision globale**.
+
+---
+
+#### **Résultats :**
+
+![image](https://github.com/user-attachments/assets/193d8eb1-cf04-4b27-a33c-669a156b2c2d)
+---
+
+#### **Interprétation :**
+- Tous les modèles se sont avérés parfaitement alignés avec le consensus sur l'ensemble de test, d'où des poids finaux inchangés à `1.0`.
+- Cela est cohérent avec la simplicité du dataset Iris, où tous les modèles atteignent déjà une précision de 100%.
+
+
+
+#### **Conclusion :**
+Le mécanisme de pondération garantit qu’à long terme, les modèles les plus fiables contribuent davantage au consensus, tout en pénalisant les modèles imprécis. Bien que ce mécanisme n'ait pas eu d'impact notable sur ce dataset (Iris), il est crucial dans des scénarios où les modèles ont des performances variables.
+
+
 terminal : pip install flask scikit-learn
 
 http://127.0.0.1:5000/predict?sepal_length=5.1&sepal_width=3.5&petal_length=1.4&petal_width=0.2
