@@ -1,9 +1,9 @@
 # td3_decentralisation
 
-code_1 : Modèle de base avec une couche cachéé
+Code 1 : Logistic Regression (simple et rapide).
 
-code_2 : Ajout de deux couches cachées
+Code 2 : Random Forest (robuste pour des ensembles de données complexes).
 
-code_3 : Entrînement avec une fonction d'activation différente (Sigmoid)
+Code 3 : SVM (idéal pour les frontières de décision claires).
 
-code_4 : Normalisation des sorties avec Softmax dans l'architecture
+Code 4 : KNN (basé sur la proximité des exemples).
