@@ -119,6 +119,69 @@ Ce code interroge quatre modèles distincts (Régression Logistique, Random Fore
 Le mécanisme de pondération garantit qu’à long terme, les modèles les plus fiables contribuent davantage au consensus, tout en pénalisant les modèles imprécis. Bien que ce mécanisme n'ait pas eu d'impact notable sur ce dataset (Iris), il est crucial dans des scénarios où les modèles ont des performances variables.
 
 
+# **Question 4 : Proof-of-Stake avec Slashing**
+
+### **Objectif**
+Implémenter un mécanisme de **Proof-of-Stake avec slashing**, où :
+1. Chaque modèle effectue un dépôt initial de 1000 euros pour participer au système.
+2. Les modèles sont pénalisés (slashing) s'ils ne contribuent pas à des prédictions précises, réduisant leur solde et leur influence dans le système.
+3. Les modèles performants gagnent en poids et conservent leur balance initiale.
+
+---
+
+### **Fonctionnement**
+1. **Dépôt initial :** 
+   - Chaque modèle commence avec un dépôt de 1000 euros, enregistré dans un fichier JSON local (`model_balances.json`).
+   
+2. **Mise à jour des poids et slashing :** 
+   - Les modèles qui s'alignent avec la prédiction consensuelle gagnent un bonus de poids (`+0.1`).
+   - Les modèles qui ne s'alignent pas subissent une pénalité financière de 50 euros.
+   - Si un modèle atteint un solde de 0 euros, il est exclu du système.
+
+3. **Précision globale :**
+   - Le consensus des modèles est calculé via une agrégation pondérée des probabilités, en tenant compte des poids dynamiques.
+
+---
+
+### **Résultats**
+![image](https://github.com/user-attachments/assets/9ef61e78-182f-4f59-8729-a2c8d4632c08)
+
+---
+
+### **Analyse des résultats**
+1. **Précision parfaite :**
+   - Tous les modèles ont contribué de manière cohérente aux prédictions consensuelles, expliquant pourquoi les poids finaux sont restés inchangés à `1.0`.
+
+2. **Balances inchangées :**
+   - Aucun modèle n'a été pénalisé car ils ont tous fourni des prédictions correctes, reflétant la simplicité du dataset Iris.
+
+3. **Robustesse :**
+   - Le mécanisme de slashing n'a pas été activé dans ce cas, mais il reste utile pour des datasets plus complexes où des modèles peuvent produire des prédictions incorrectes.
+
+---
+
+### **Étapes pour exécuter**
+1. **Lancer les serveurs Flask :**
+   - Exécute les fichiers `Code_1.py`, `Code_2.py`, `Code_3.py`, `Code_4.py` pour démarrer les serveurs Flask.
+
+2. **Exécuter le script Proof-of-Stake :**
+   ```bash
+   python Proof_of_Stake_slashing.py
+   ```
+
+3. **Observer les résultats :**
+   - La précision agrégée.
+   - Les poids finaux des modèles.
+   - Les balances finales sauvegardées dans `model_balances.json`.
+
+---
+
+### **Conclusion**
+Le mécanisme de **Proof-of-Stake avec slashing** introduit un système de responsabilisation, où seuls les modèles performants et fiables maintiennent leur influence et leur dépôt. Bien que les résultats sur le dataset Iris montrent une performance parfaite (aucune pénalité appliquée), ce système est essentiel dans des environnements réels pour garantir l'intégrité et la fiabilité des prédictions.
+
+---
+
+
 terminal : pip install flask scikit-learn
 
 http://127.0.0.1:5000/predict?sepal_length=5.1&sepal_width=3.5&petal_length=1.4&petal_width=0.2
