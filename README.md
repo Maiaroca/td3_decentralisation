@@ -64,6 +64,7 @@ Les 4 modèles ont été évalués sur le dataset Iris, en utilisant un ensemble
 
 
 # Question 2
+![image](https://github.com/user-attachments/assets/71fbb305-eac9-4bbb-a18f-cee2c7255d05)
 
 Le modèle agrégé, basé sur un consensus des prédictions de 4 modèles distincts (Régression Logistique, Random Forest, SVM, et KNN), a obtenu une précision de 100% sur l'ensemble de test du dataset Iris.
 
