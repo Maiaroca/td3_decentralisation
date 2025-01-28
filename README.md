@@ -63,6 +63,16 @@ Les 4 modèles ont été évalués sur le dataset Iris, en utilisant un ensemble
   - Le **KNN** pourrait être sensible aux données bruitées.
 
 
+# Question 2
+
+Le modèle agrégé, basé sur un consensus des prédictions de 4 modèles distincts (Régression Logistique, Random Forest, SVM, et KNN), a obtenu une précision de 100% sur l'ensemble de test du dataset Iris.
+
+## Points forts :
+### Robustesse : 
+En combinant plusieurs modèles, le consensus permet de corriger les erreurs potentielles de modèles individuels.
+Performance : Le vote majoritaire est une méthode simple et efficace pour agréger les prédictions.
+### Limites :
+Le dataset Iris est relativement simple, ce qui explique les performances parfaites. Sur des datasets plus complexes, cette méthode devra être testée pour vérifier sa robustesse.
 
 terminal : pip install flask scikit-learn
 
